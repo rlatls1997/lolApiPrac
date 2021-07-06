@@ -2,24 +2,18 @@
   <div>
     <template>
       <v-text-field
-          v-model="summonerName"
+          v-model="championName"
           label="Search (UPPER CASE ONLY)"
           class="mx-4"
       ></v-text-field>
       <v-btn
-          @click="searchByName">
+          @click="getChampionInfo">
         submit
       </v-btn>
     </template>
     <br><br>
     <template>
-      id : {{summonerDto.id}}<br>
-      accountId : {{summonerDto.accountId}}<br>
-      puuid : {{summonerDto.puuid}}<br>
-      name : {{summonerDto.name}}<br>
-      profileIconId : {{summonerDto.profileIconId}}<br>
-      revisionDate : {{summonerDto.revisionDate}}<br>
-      summonerLevel : {{summonerDto.summonerLevel}}<br>
+      id : {{championDto}}<br>
     </template>
   </div>
 </template>
@@ -29,8 +23,8 @@ import {mapActions} from "vuex";
 export default {
   data() {
     return {
-      summonerName: '',
-      summonerDto: this.$store.state.summoners.summonerDto,
+      championName: '',
+      championDto: this.$store.state.champions.championDto,
     }
   },
   computed: {
@@ -59,17 +53,17 @@ export default {
     },
   },
   methods: {
-    ...mapActions({getSummonerByName: "summoners/getSummonerByName"}),
+    ...mapActions({getChampion: "champions/getChampionInfo"}),
     filterOnlyCapsText(value, search) {
       return value != null &&
           search != null &&
           typeof value === 'string' &&
           value.toString().toLocaleUpperCase().indexOf(search) !== -1
     },
-    async searchByName() {
-      await this.getSummonerByName(this.summonerName);
-      this.summonerDto = this.$store.state.summoners.summonerDto
-    },
+    async getChampionInfo() {
+      await this.getChampion(this.championName);
+      this.championDto = this.$store.state.champions.championDto;
+    }
   },
 }
 </script>
