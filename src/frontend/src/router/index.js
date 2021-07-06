@@ -5,6 +5,7 @@ import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 const SearchSummoner = () => import("../views/SearchSummoner.vue");
+const SearchChampionInfo = () => import("../views/SearchChampionInfo.vue");
 const routes = [
   {
     path: '/',
@@ -23,6 +24,11 @@ const routes = [
     path: "/summoner/by-name",
     name: 'SearchSummoner',
     component: SearchSummoner
+  },
+  {
+    path: "/championInfo",
+    name: 'SearchChampion',
+    component: SearchChampionInfo
   }
 
 ]
