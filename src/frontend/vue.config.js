@@ -6,7 +6,7 @@ module.exports = {
     devServer: {
         proxy: {
             "/": {
-                target: "http://localhost:8080",
+                target: "https://kr.api.riotgames.com/",
                 ws: true,
                 changeOrigin: true
             }
