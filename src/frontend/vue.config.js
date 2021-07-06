@@ -5,8 +5,13 @@ module.exports = {
 
     devServer: {
         proxy: {
-            "/": {
+            "/lol/summoner/v4": {
                 target: "https://kr.api.riotgames.com/",
+                ws: true,
+                changeOrigin: true
+            },
+            "/https://ddragon.leagueoflegends.com": {
+                target: "https://ddragon.leagueoflegends.com",
                 ws: true,
                 changeOrigin: true
             }
