@@ -21,14 +21,14 @@ public class MemberService {
     public MemberResponseDto create(MemberRequestDto requestDto) {
         Organization organization = organizationRepository.getById(requestDto.getOrganizationId());
         Member member = Member.builder()
-                .organizationId(organization)
+                .organization(organization)
                 .puuid(requestDto.getPuuid())
                 .note(requestDto.getNote())
                 .build();
         return MemberResponseDto.from(memberRepository.save(member));
     }
 
-    public List<MemberResponseDto> findByGroupId(Long id){
+    public List<MemberResponseDto> findByOrganizationId(Long id){
         List<Member> members = memberRepository.findByOrganizationId(id);
         return members.stream()
                 .map(MemberResponseDto::from)

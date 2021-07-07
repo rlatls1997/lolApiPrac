@@ -22,9 +22,8 @@ public class Member extends Timestamped {
 
     @ManyToOne
     @JoinColumn(name = "organization_id")
-    @NotBlank(message = "organization is Null")
     @JsonBackReference(value="organization-member")
-    private Organization organizationId;
+    private Organization organization;
 
     @Column
     @NotBlank(message = "puuid is Null")
