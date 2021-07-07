@@ -1,4 +1,4 @@
-package com.lolapiprac.demo.group.dto;
+package com.lolapiprac.demo.Organization.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 
 @NoArgsConstructor
 @Getter
-public class GroupRequestDto {
+public class OrganizationRequestDto {
     @NotBlank(message = "그룹명을 입력하세요.")
     @Length(min = 2, max = 10)
     private String name;

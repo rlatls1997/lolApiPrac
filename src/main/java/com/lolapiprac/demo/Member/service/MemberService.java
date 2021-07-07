@@ -4,9 +4,8 @@ import com.lolapiprac.demo.Member.dto.MemberRequestDto;
 import com.lolapiprac.demo.Member.dto.MemberResponseDto;
 import com.lolapiprac.demo.Member.entity.Member;
 import com.lolapiprac.demo.Member.repository.MemberRepository;
-import com.lolapiprac.demo.group.dto.GroupResponseDto;
-import com.lolapiprac.demo.group.entity.Group;
-import com.lolapiprac.demo.group.repository.GroupRepository;
+import com.lolapiprac.demo.Organization.entity.Organization;
+import com.lolapiprac.demo.Organization.repository.OrganizationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +16,12 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class MemberService {
     private final MemberRepository memberRepository;
-    private final GroupRepository groupRepository;
+    private final OrganizationRepository organizationRepository;
 
     public MemberResponseDto create(MemberRequestDto requestDto) {
-        Group group = groupRepository.getById(requestDto.getGroupId());
+        Organization organization = organizationRepository.getById(requestDto.getOrganizationId());
         Member member = Member.builder()
-                .group(group)
+                .organizationId(organization)
                 .puuid(requestDto.getPuuid())
                 .note(requestDto.getNote())
                 .build();
@@ -30,7 +29,7 @@ public class MemberService {
     }
 
     public List<MemberResponseDto> findByGroupId(Long id){
-        List<Member> members = memberRepository.findByGroupId(id);
+        List<Member> members = memberRepository.findByOrganizationId(id);
         return members.stream()
                 .map(MemberResponseDto::from)
                 .collect(Collectors.toList());

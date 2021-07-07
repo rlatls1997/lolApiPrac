@@ -24,9 +24,9 @@ public class MemberController {
         return ResponseEntity.created(URI.create("/" + member.getId())).build();
     }
 
-    @GetMapping("/list/{groupId}")
-    public ResponseEntity<List<MemberResponseDto>> getMembers(@PathVariable Long groupId) {
-        List<MemberResponseDto> members = memberService.findByGroupId(groupId);
+    @GetMapping("/list/{organizationId}")
+    public ResponseEntity<List<MemberResponseDto>> getMembers(@PathVariable Long organizationId) {
+        List<MemberResponseDto> members = memberService.findByGroupId(organizationId);
         return new ResponseEntity(members, HttpStatus.OK);
     }
 }
