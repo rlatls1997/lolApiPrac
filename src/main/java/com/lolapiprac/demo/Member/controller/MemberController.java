@@ -2,7 +2,6 @@ package com.lolapiprac.demo.Member.controller;
 
 import com.lolapiprac.demo.Member.dto.MemberRequestDto;
 import com.lolapiprac.demo.Member.dto.MemberResponseDto;
-import com.lolapiprac.demo.Member.entity.Member;
 import com.lolapiprac.demo.Member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,7 +25,7 @@ public class MemberController {
 
     @GetMapping("/list/{organizationId}")
     public ResponseEntity<List<MemberResponseDto>> getMembers(@PathVariable Long organizationId) {
-        List<MemberResponseDto> members = memberService.findByGroupId(organizationId);
+        List<MemberResponseDto> members = memberService.findByOrganizationId(organizationId);
         return new ResponseEntity(members, HttpStatus.OK);
     }
 }
